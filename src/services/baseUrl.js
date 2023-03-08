@@ -1,1 +1,1 @@
-export const baseUrl = "https://theplayroom-backend.fly.dev"
+export const baseUrl = "theplayroom-backend2.fly.dev"
