@@ -19,6 +19,7 @@ import Storytime from "./pages/Storytime";
 // import Shapes from "./Games/Shapes";
 // import TraceGame from "./Games/Tracing";
 // import Weather from "./Games/Weather";
+import NurseryRhymes from "./Games/NurseryRhymes";
 
 const App = () => {
   const getToken = () => {
@@ -52,6 +53,7 @@ const App = () => {
           {/* <Route path="/created-games" element={<CreatedGames />} /> */}
           {/* <Route path="/Resources" element={<Resources />} /> */}
           <Route path="/StoryTime" element={<Storytime />} />
+          <Route path="/nurseryrhymes" element={<NurseryRhymes />} />
           {/* <Route path="/tracing" element={<TraceGame />} /> */}
           {/* <Route path="/shapes" element={<Shapes />} /> */}
           {/* <Route path="/painting" element={<PaintingGame />} /> */}

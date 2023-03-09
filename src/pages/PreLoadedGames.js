@@ -4,15 +4,37 @@ import { LoadingContext } from "../context/loading.context";
 
 const PreLoadedGames = () => {
   const [gamesList, setGameList] = useState(null);
-  const { parent } = useContext(LoadingContext);
+  const { child } = useContext(LoadingContext);
+
   const addGame = (game) => {
-    post(`/updates/gameUpdate/${parent.childId}`, { gameId: game })
-      .then((result) => {
-        console.log(result.data);
-      })
-      .catch((err) => console.log(err));
-  };
-  useEffect(() => {
+    console.log("this is the game", game)
+    let newList = [...gamesList]
+
+    let gameIndex = gamesList.findIndex((thisGame) => thisGame._id === game._id) 
+
+    let updatedGame = Object.assign({}, game) 
+    updatedGame.playable = true  
+
+    newList[gameIndex] = updatedGame
+
+    console.log(updatedGame)
+    setGameList(newList)
+
+
+    if (child) {
+        post('/updates/create', {
+          child: child, game: game
+        })
+        .then((results) => {
+          console.log("Creating", results.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+} 
+
+useEffect(() => {
     if (!gamesList)
       get("/updates/allGames").then((result) => {
         setGameList(result.data);
@@ -20,23 +42,19 @@ const PreLoadedGames = () => {
   }, []);
   console.log(gamesList);
   return (
-    <div className="preloaded">
+    <div className="preloaded frame">
       {gamesList ? (
         gamesList.map((game) => {
           return (
-            <>
+            <div className="gamecontainer">
               <h1>{game.title}</h1>
               <iframe src={game.play_link} title="game" />
               {/* <img src={}></img> */}
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  addGame(game._id);
-                }}
-              >
-                <button>Play Game</button>
-              </form>
-            </>
+              <div className={game.playable ? "hidden" : "overlay"} onClick={() => addGame(game)}>
+                <h1>Play Game</h1>
+                <h1 className={game.playable ? "visible" : "hidden"}>Visible</h1>
+              </div>
+            </div>
           );
         })
       ) : (

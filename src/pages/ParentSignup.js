@@ -87,7 +87,7 @@ const Signup = () => {
             onChange={handleChange}
           ></input>
           <label>Relation</label>
-          <select type="relation">
+          <select name="relation" onChange={handleChange}>
             <option type="option">Select</option>
             <option type="option1">Parent</option>
             <option type="option2">Grandparent</option>

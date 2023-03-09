@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const { parent } = useContext(LoadingContext);
+    const { parent, child } = useContext(LoadingContext);
 
     const handleLogout = async () => {
       try {
@@ -23,6 +24,13 @@ const Navbar = () => {
       }
     };
 
+    const handleClick = () => {
+        if (child) {
+            localStorage.clear()
+            // navigate(`/profile/${parent._id}`)
+        }
+    }
+
   return (
     <>
       {parent ? (
@@ -34,6 +42,7 @@ const Navbar = () => {
           <Link to={"/updates"}>Updates</Link>
           <Link to={"/childprofile"}>Child Profile</Link>
           <Link to={"/storytime"}>Story Time</Link>
+          <Link to={"/nurseryrhymes"}>Nursery Rhymes</Link>
           <Link to="/" onClick={handleLogout}>Log Out</Link>
 
         </nav>
@@ -41,7 +50,8 @@ const Navbar = () => {
         <nav className="navigation">
           <Link to={"/"}>Home</Link>
           <Link to={"/signup"}>Sign Up</Link>
-          <Link to={"/login"}>Login </Link>
+          <Link to={"/login"} onClick={handleClick}
+          >Login </Link>
           <Link to={"/childlogin"}>Child Login </Link>
         </nav>
       )}

@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PreLoadedGames from "./PreLoadedGames";
-import CreatedGames from "./CreatedGames";
 import { post } from "../services/authService";
 import { AuthContext } from "../context/auth.context";
+import { LoadingContext } from "../context/loading.context";
 
 function Keyboard({ onLetterClick }) {
   const rows = [
@@ -41,13 +41,15 @@ function Keyboard({ onLetterClick }) {
 const ChildLogin = () => {
   const [text, setText] = useState("");
   const { authenticateParent } = useContext(AuthContext);
+  const {child, setChild} = useContext(LoadingContext);
+  const navigate = useNavigate()
 
   console.log(text);
   function handleLetterClick(letter) {
     if (letter === "\u2190") {
       setText(text.slice(0, -1)); // remove last character from text
     } else {
-      setText(text + letter);
+      setText(text + letter.toLowerCase());
     } // const { user } = AuthContext();
     // const { childId } = useParams();
   }
@@ -57,29 +59,29 @@ const ChildLogin = () => {
     post("/child/childlogin", { text })
       .then((results) => {
         console.log(results.data);
+        setChild(results.data.child)
+        navigate("/preloaded-games")
         localStorage.setItem("authToken", results.data.token);
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        authenticateParent();
-      });
+      // .finally(() => {
+      //   authenticateParent();
+      // });
   };
 
   return (
     <>
       <div className="childLogin">
+        <Keyboard onLetterClick={handleLetterClick} />
         <form onSubmit={handleChildLogin}>
           <input type="text" name="text" value={text} />
           <button>GO</button>
         </form>
-        <Keyboard onLetterClick={handleLetterClick} />
       </div>
       <div className="welcomeMsg">
-        <p> `Hi ${ChildLogin}! Let's play a game!`</p>
-        <Link to="/PreLoaded-games" path={<PreLoadedGames />} />
-        <Link to="/created-games" path={<CreatedGames />} />
+        <h3> Hi Login and Let's play a game!</h3>
       </div>
     </>
   );

@@ -9,6 +9,7 @@ const LoadingProvider = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [parent, setParent] = useState(null);
+    const [child, setChild] =useState(null)
 
     const [ childName, setChildName ] = useState([]);
     const [ gamesPlayed, setGamesPlayed ] = useState(null);
@@ -39,7 +40,7 @@ const getUpdate = () =>{
 }
 
 return (
-    <LoadingContext.Provider value={{ childName, setChildName, updates, setUpdates, isLoading, parent, setParent, setIsLoading, gamesPlayed, message, setGamesPlayed, getUpdates, setTimedMessage, getUpdate}}>
+    <LoadingContext.Provider value={{ child, setChild, childName, setChildName, updates, setUpdates, isLoading, parent, setParent, setIsLoading, gamesPlayed, message, setGamesPlayed, getUpdates, setTimedMessage, getUpdate}}>
           {children}
         </LoadingContext.Provider>
       );
