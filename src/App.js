@@ -2,7 +2,7 @@ import { Routes, Route, Link, Navigate, Outlet } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
-import About from "./pages/About";
+// import About from "./pages/About";
 import ChildLogin from "./pages/ChildLogin";
 import ComingSoon from "./pages/ComingSoon";
 import Home from "./pages/Home";
@@ -11,14 +11,14 @@ import Profile from "./pages/Profile";
 import ParentSignUp from "./pages/ParentSignup";
 import Updates from "./pages/Updates";
 import PreLoadedGames from "./pages/PreLoadedGames";
-import Resources from "./pages/Resources";
+// import Resources from "./pages/Resources";
 import EditProfile from "./pages/EditProfile";
-import CreatedGames from "./pages/CreatedGames";
+// import CreatedGames from "./pages/CreatedGames";
 import Storytime from "./pages/Storytime";
-import PaintingGame from "./Games/Painting";
-import Shapes from "./Games/Shapes";
-import TraceGame from "./Games/Tracing";
-import Weather from "./Games/Weather";
+// import PaintingGame from "./Games/Painting";
+// import Shapes from "./Games/Shapes";
+// import TraceGame from "./Games/Tracing";
+// import Weather from "./Games/Weather";
 
 const App = () => {
   const getToken = () => {
@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/childlogin" element={<ChildLogin />} />
           {/* <Route path="/Comingsoon" element={<ComingSoon />} /> */}
-          {/* <Route path="/preloaded-games" element={<PreLoadedGames />} /> */}
+          <Route path="/preloaded-games" element={<PreLoadedGames />} />
           {/* <Route path="/created-games" element={<CreatedGames />} /> */}
           {/* <Route path="/Resources" element={<Resources />} /> */}
           <Route path="/StoryTime" element={<Storytime />} />

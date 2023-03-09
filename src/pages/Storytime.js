@@ -3,51 +3,55 @@ import { post, get } from "../services/authService";
 import { LoadingContext } from "../context/loading.context";
 
 const StoryTime = () => {
-  const [gamesList, setGameList] = useState(null);
-  const { parent } = useContext(LoadingContext);
-  const addGame = (game) => {
-    post(`/updates/gameUpdate/${parent.childId}`, { gameId: game })
-      .then((result) => {
-        console.log(result.data);
-      })
-      .catch((err) => console.log(err));
+    return (
+      <div>
+        <h1>Pick a story to watch</h1>
+        <div>
+          <h2>"The Very Hungry Caterpillar"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/75NQK-Sm1YY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h2>"The Cat in the Hat"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/-LL62u6-OjY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div>
+          <h2>"Oh the Places You'll Go"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/abw43kcLrbg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div>
+          <h2>"Little Red Riding Hood"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/DKdc_kVBz7c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div>
+          <h2>"Goldilocks and the Three Bears"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/G_pUBlsgBZ8?start=19" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div>
+          <h2>"The GingerBread Man"</h2>
+          <iframe
+           width="560" height="315" src="https://www.youtube.com/embed/pckuS--UlV4?start=19" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div>
+          <h2>"The Sour Grape"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/ZCL85YoRRJU?start=19" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div>
+          <h2>"The Rainbow Fish"</h2>
+          <iframe
+            width="560" height="315" src="https://www.youtube.com/embed/TOnuVm4OrCc?start=19" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+      </div>
+    );
   };
-  useEffect(() => {
-    if (!gamesList)
-      get("/updates/allGames").then((result) => {
-        setGameList(result.data);
-      });
-  }, []);
-  console.log(gamesList);
-  return (
-    <div className="preloaded">
-      {gamesList ? (
-        gamesList.map((game) => {
-          return (
-            <>
-              <h1>{game.title}</h1>
-              <iframe src={game.play_link} title="game" />
-              {/* <img src={}></img> */}
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  addGame(game._id);
-                }}
-              >
-                <button>Play Game</button>
-              </form>
-            </>
-          );
-        })
-      ) : (
-        <p>No Games Found</p>
-      )}
-    </div>
-  );
-};
-
+  
 export default StoryTime;
-// [
+
 
 //     {
 //         "title":"The Very Hungry Caterpillar",
