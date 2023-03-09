@@ -6,7 +6,7 @@ const PreLoadedGames = () => {
   const [gamesList, setGameList] = useState(null);
   const { parent } = useContext(LoadingContext);
   const addGame = (game) => {
-    post(`/updates/gameUpdate/${parent._id}`, { gameId: game })
+    post(`/updates/gameUpdate/${parent.childId}`, { gameId: game })
       .then((result) => {
         console.log(result.data);
       })
@@ -27,6 +27,7 @@ const PreLoadedGames = () => {
             <>
               <h1>{game.title}</h1>
               <iframe src={game.play_link} title="game" />
+              {/* <img src={}></img> */}
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

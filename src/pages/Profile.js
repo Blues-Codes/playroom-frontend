@@ -8,12 +8,11 @@ import { AuthContext } from "../context/auth.context";
 // import Updates from './Updates';
 
 const Profile = () => {
-  const [updates, setUpdates] = useState([]);
   const { logout } = useContext(AuthContext);
   useEffect(() => {
     fetch("/api/updates")
       .then((response) => response.json())
-      .then((data) => setUpdates(data));
+      // .then((data) => setUpdates(data));
   }, []);
 
   const navigate = useNavigate();
@@ -23,9 +22,9 @@ const Profile = () => {
       <Link to={"/edit-profile"}>
         <button>Edit Profile</button>
       </Link>
-      <Link to={"/Resources"}>
+      {/* <Link to={"/Resources"}>
         <button>Additional Resources</button>
-      </Link>
+      </Link> */}
       <button onClick={logout}> Log Out</button>
     </div>
   );

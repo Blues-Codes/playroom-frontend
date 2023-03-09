@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { LoadingContext } from "../context/loading.context";
+// import { useContext, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { LoadingContext } from "../context/loading.context";
 
-const About = () => {
-  return (
-    <div className="About-section">
+// const About = () => {
+//   return (
+//     <div className="About-section">
         
-        About
+//         About
         
-        </div>
-  )
-}
+//         </div>
+//   )
+// }
 
-export default About
+// export default About

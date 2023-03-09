@@ -1,14 +1,52 @@
-import React from 'react'
+import { useState, useEffect, useContext } from "react";
+import { post, get } from "../services/authService";
+import { LoadingContext } from "../context/loading.context";
 
-
-const Storytime = () => {
+const StoryTime = () => {
+  const [gamesList, setGameList] = useState(null);
+  const { parent } = useContext(LoadingContext);
+  const addGame = (game) => {
+    post(`/updates/gameUpdate/${parent.childId}`, { gameId: game })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    if (!gamesList)
+      get("/updates/allGames").then((result) => {
+        setGameList(result.data);
+      });
+  }, []);
+  console.log(gamesList);
   return (
-    <div>Storytime</div>
-  )
-}
+    <div className="preloaded">
+      {gamesList ? (
+        gamesList.map((game) => {
+          return (
+            <>
+              <h1>{game.title}</h1>
+              <iframe src={game.play_link} title="game" />
+              {/* <img src={}></img> */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  addGame(game._id);
+                }}
+              >
+                <button>Play Game</button>
+              </form>
+            </>
+          );
+        })
+      ) : (
+        <p>No Games Found</p>
+      )}
+    </div>
+  );
+};
 
-export default Storytime
-
+export default StoryTime;
 // [
 
 //     {

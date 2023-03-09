@@ -38,7 +38,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        {/* <Route path="/about" element={<About />} /> */}
         <Route path="/login" element={<ParentLogin />} />
         <Route path="/childlogin" element={<ChildLogin />} />
 
@@ -47,15 +47,15 @@ const App = () => {
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/childlogin" element={<ChildLogin />} />
-          <Route path="/Comingsoon" element={<ComingSoon />} />
-          <Route path="/preloaded-games" element={<PreLoadedGames />} />
-          <Route path="/created-games" element={<CreatedGames />} />
-          <Route path="/Resources" element={<Resources />} />
+          {/* <Route path="/Comingsoon" element={<ComingSoon />} /> */}
+          {/* <Route path="/preloaded-games" element={<PreLoadedGames />} /> */}
+          {/* <Route path="/created-games" element={<CreatedGames />} /> */}
+          {/* <Route path="/Resources" element={<Resources />} /> */}
           <Route path="/StoryTime" element={<Storytime />} />
-          <Route path="/tracing" element={<TraceGame />} />
-          <Route path="/shapes" element={<Shapes />} />
-          <Route path="/painting" element={<PaintingGame />} />
-          <Route path="/weather" element={<Weather />} />
+          {/* <Route path="/tracing" element={<TraceGame />} /> */}
+          {/* <Route path="/shapes" element={<Shapes />} /> */}
+          {/* <Route path="/painting" element={<PaintingGame />} /> */}
+          {/* <Route path="/weather" element={<Weather />} /> */}
         </Route>
 
         <Route element={<NotLoggedIn />}>
