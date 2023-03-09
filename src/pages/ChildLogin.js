@@ -1,14 +1,14 @@
-import {  useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import PreLoadedGames from "./PreLoadedGames";
 import CreatedGames from "./CreatedGames";
-import { post } from "../services/authService"
-
+import { post } from "../services/authService";
+import { AuthContext } from "../context/auth.context";
 
 function Keyboard({ onLetterClick }) {
   const rows = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-    ["A", "S", "D", "F", "G", "H", "J", "K", "L","\u2190"],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L", "\u2190"],
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
 
@@ -22,8 +22,12 @@ function Keyboard({ onLetterClick }) {
         <>
           <div key={index} className="row">
             {row.map((letter) => (
-              <button key={letter} onClick={() => { 
-                handleClick(letter)}}>
+              <button
+                key={letter}
+                onClick={() => {
+                  handleClick(letter);
+                }}
+              >
                 {letter}
               </button>
             ))}
@@ -36,35 +40,39 @@ function Keyboard({ onLetterClick }) {
 
 const ChildLogin = () => {
   const [text, setText] = useState("");
-  console.log(text)
+  const { authenticateParent } = useContext(AuthContext);
+
+  console.log(text);
   function handleLetterClick(letter) {
     if (letter === "\u2190") {
       setText(text.slice(0, -1)); // remove last character from text
     } else {
       setText(text + letter);
-    }  // const { user } = AuthContext();
-  // const { childId } = useParams();
+    } // const { user } = AuthContext();
+    // const { childId } = useParams();
   }
 
-  const handleChildLogin =(e) => {
-    e.preventDefault()
-    post('/child/childlogin', {text})
-    .then((results) => {
-      console.log(results.data)
-    }) 
-    .catch((err) =>{
-      console.log(err)
-    })
-  }
-
+  const handleChildLogin = (e) => {
+    e.preventDefault();
+    post("/child/childlogin", { text })
+      .then((results) => {
+        console.log(results.data);
+        localStorage.setItem("authToken", results.data.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        authenticateParent();
+      });
+  };
 
   return (
     <>
       <div className="childLogin">
         <form onSubmit={handleChildLogin}>
-        <input type="text" name="text"value={text} />
-        <button>GO</button>
-
+          <input type="text" name="text" value={text} />
+          <button>GO</button>
         </form>
         <Keyboard onLetterClick={handleLetterClick} />
       </div>
@@ -75,8 +83,6 @@ const ChildLogin = () => {
       </div>
     </>
   );
-}
-
-
+};
 
 export default ChildLogin;

@@ -7,12 +7,12 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const { setIsLoading, setParent, setMessage } = useContext(LoadingContext);
-  const [ child, setChild] = useState(null)
+  const [child, setChild] = useState(null);
   const navigate = useNavigate();
 
   const authenticateParent = () => {
     const token = localStorage.getItem("authToken");
-    console.log("THIS IS LINE 15",token);
+    console.log("THIS IS LINE 15", token);
     setIsLoading(true);
 
     if (!token) {
@@ -20,31 +20,26 @@ const AuthProvider = ({ children }) => {
       setIsLoading(false);
       setParent(null);
     } else {
-      get('/child/verify')
-      .then((results) =>{
-        console.log('Child verify', results.data);
-        setChild(results.data)
-      })
-    get("/auth/verify")
-      .then((results) => {
-        console.log("Are we logged in?", results.data);
-        setParent(results.data);
-      })
-      .catch((err) => {
-        localStorage.clear();
-        setIsLoading(false);
-        setMessage(err.message);
-        console.log(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      get("/auth/verify")
+        .then((results) => {
+          console.log("Are we logged in?", results.data);
+          setParent(results.data);
+        })
+        .catch((err) => {
+          localStorage.clear();
+          setIsLoading(false);
+          setMessage(err.message);
+          console.log(err.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   };
 
   const logout = () => {
     localStorage.clear();
-    setMessage("You are logged out.");
+    // setMessage("You are logged out.");
     setParent(null);
     navigate("/");
   };

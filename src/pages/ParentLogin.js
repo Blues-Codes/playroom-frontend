@@ -1,60 +1,65 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { AuthContext } from "../context/auth.context"
-import { post } from "../services/authService"
-
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+import { LoadingContext } from "../context/loading.context";
+import { post } from "../services/authService";
 
 const Login = () => {
+  const { authenticateParent } = useContext(AuthContext);
+  const { parent } = useContext(LoadingContext);
+  const [thisParent, setthisParent] = useState({
+    email: "",
+    password: "",
+  });
 
-    const { authenticateParent } = useContext(AuthContext)
+  const navigate = useNavigate();
 
-    const [ thisParent, setthisParent ] = useState(
-        {
-            email: "",
-            password: ""
-        }
-    )
+  const handleChange = (e) => {
+    setthisParent((recent) => ({ ...recent, [e.target.name]: e.target.value }));
+    console.log("Changing Parent", thisParent);
+  };
 
-    const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleChange = (e) => {
-        setthisParent((recent)=>({...recent, [e.target.name]: e.target.value}))
-        console.log("Changing Parent", thisParent)
-    }
+    post("/auth/login", thisParent)
+      .then((results) => {
+        console.log("Created Parent", results.data);
+        navigate(`/profile/${results.data._id}`);
+        localStorage.setItem("authToken", results.data.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        authenticateParent();
+      });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+  return (
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={thisParent.email}
+          onChange={handleChange}
+        ></input>
 
-        post('/auth/login', thisParent)
-            .then((results) => {
-                console.log("Created Parent", results.data)
-                navigate(`/profile/${results.data._id}`)
-                localStorage.setItem('authToken', results.data.token )
-                
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-            .finally(() => {
-                authenticateParent()
-            })
-    } 
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          value={thisParent.password}
+          onChange={handleChange}
+        ></input>
 
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input type='email' name="email" value={thisParent.email} onChange={handleChange}></input>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+};
 
-                <label>Password</label>
-                <input type='password' name="password" value={thisParent.password} onChange={handleChange}></input>
-
-                <button type="submit">Login</button>
-
-            </form>
-        </div>
-    )
-}
-
-export default Login
+export default Login;
