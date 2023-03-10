@@ -54,6 +54,14 @@ const ChildLogin = () => {
     // const { childId } = useParams();
   }
 
+  const welcomeMsgStyle = {
+    color: "white",
+    textShadow: "2px 2px black",
+    border: "2px solid black",
+    padding: "10px",
+    textAlign: "center",
+  };
+
   const handleChildLogin = (e) => {
     e.preventDefault();
     post("/child/childlogin", { text })
@@ -81,7 +89,7 @@ const ChildLogin = () => {
         </form>
       </div>
       <div className="welcomeMsg">
-        <h3> Hi Login and Let's play a game!</h3>
+        <h3 style={welcomeMsgStyle}> Hi Login and Let's play a game!</h3>
       </div>
     </>
   );
