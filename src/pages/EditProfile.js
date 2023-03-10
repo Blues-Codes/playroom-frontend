@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { LoadingContext } from "../context/loading.context";
+
+
 
 function ParentProfile() {
+  const {parent} = useContext(LoadingContext)
   const [parentProfile, setParentProfile] = useState({
     name: "",
     email: "",
     password: "",
     city: "",
-    children: [],
+    // children: [],
   });
 
   const [newChild, setNewChild] = useState({
@@ -54,7 +58,7 @@ function ParentProfile() {
   
   const handleUpdateProfile = () => {
     axios
-      .put(`/parent/${parentProfile._id}`, parentProfile)
+      .post(`/parent/${parent._id}/profile`, parentProfile)
       .then((response) => {
         setParentProfile(response.data);
       })
