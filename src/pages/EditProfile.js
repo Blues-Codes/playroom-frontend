@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 function ParentProfile() {
   const {parent, setParent} = useContext(LoadingContext)
   const [parentProfile, setParentProfile] = useState({
-    name: "",
-    email: "",
-    password: "",
-    city: "",
+    name: parent.name,
+    email: parent.email,
+    password: parent.password,
+    city: parent.city
     // children: [],
   });
 
