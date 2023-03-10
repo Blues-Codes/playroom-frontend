@@ -104,7 +104,7 @@ function ParentProfile() {
           onChange={handleChange}
         ></input>
         {/* <h3>Children</h3> */}
-        {parentProfile.children.map((child, index) => (
+        {/* {parentProfile.children.map((child, index) => (
           <div key={index}>
             <label>Name</label>
             <input type="text" value={child.name} disabled></input>
@@ -113,7 +113,7 @@ function ParentProfile() {
             <label>Relation</label>
             <input type="text" value={child.relation} disabled></input>
           </div>
-          ))}
+          ))} */}
         {/* <h4>Add Child</h4>
         <label>Name</label>
         <input
