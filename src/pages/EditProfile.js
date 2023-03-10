@@ -11,7 +11,7 @@ function ParentProfile() {
   const [parentProfile, setParentProfile] = useState({
     name: parent.name,
     email: parent.email,
-    password: parent.password,
+    // password: parent.password,
     city: parent.city
     // children: [],
   });
@@ -92,13 +92,13 @@ function ParentProfile() {
           value={parentProfile.email}
           onChange={handleChange}
         ></input>
-        <label>Password</label>
+        {/* <label>Password</label>
         <input
           type="password"
           name="password"
           value={parentProfile.password}
           onChange={handleChange}
-        ></input>
+        ></input> */}
         <label>City</label>
         <input
           type="text"

@@ -6,7 +6,7 @@ import { get } from "../services/authService"
 
 const Profile = () => {
   const [parent, setParent] = useState(null);
-  const { logout } = useContext(AuthContext);
+  const { logout, authenticateParent } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,15 +31,16 @@ const Profile = () => {
           <button onClick={() => {
             const confirmDelete = window.confirm("Are you sure you want to delete your profile?");
             if (confirmDelete) {
-              get(`/parent/delete-profile/${parent._id}`, {
-                method: "DELETE"
-              })
+              get(`/parent/delete-profile/${parent._id}`)
               .then(response => {
                 localStorage.clear()
                 console.log(response)
                   navigate("/"); // redirect to homepage or login page
               })
-              .catch(error => console.error(error));
+              .catch(error => console.error(error))
+              .finally(() =>{
+                authenticateParent()
+              })
             }
           }}>Delete Profile</button>
         )}

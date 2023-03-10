@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
         })
         .catch((err) => {
           localStorage.clear();
+          setParent(null);
           setIsLoading(false);
           setMessage(err.message);
           console.log(err.message);
