@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { LoadingContext } from "../context/loading.context";
+import { post } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 
 
 function ParentProfile() {
-  const {parent} = useContext(LoadingContext)
+  const {parent, setParent} = useContext(LoadingContext)
   const [parentProfile, setParentProfile] = useState({
     name: "",
     email: "",
@@ -55,12 +57,13 @@ function ParentProfile() {
   //       console.log(error);
   //     });
   // };
-  
+  const navigate = useNavigate()
+
   const handleUpdateProfile = () => {
-    axios
-      .post(`/parent/${parent._id}/profile`, parentProfile)
+    post(`/parent/${parent._id}/profile`, parentProfile)
       .then((response) => {
-        setParentProfile(response.data);
+        setParent(response.data);
+        navigate(`/profile/${response.data._id}`)
       })
       .catch((error) => {
         console.log(error);
