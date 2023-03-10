@@ -9,6 +9,9 @@ form {
   flex-direction: column;
   align-items: center;
   width: 25vw;
+  background-color: white; /* set background color to white */
+  border: 1px solid black; /* set thin black border */
+  padding: 20px; /* add some padding for better appearance */
 }
 
 .parentSignup button {
@@ -40,12 +43,13 @@ form {
   justify-content: center;
   align-items: center;
 }
- .keyboard button{
-border: none;
-background-color: #f2f2f2;
-font-size: 24px;
-padding: 10px;
-margin: 5px;
+.keyboard button {
+  border: 2px solid red; /* add red border */
+  background-color: beige; /* change background color to beige */
+  color: red; /* change text color to red */
+  font-size: 24px;
+  padding: 10px;
+  margin: 5px;
 }
 
 

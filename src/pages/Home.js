@@ -6,12 +6,17 @@
 import { Link } from "react-router-dom"
 
 const Home = () => {
-  
+  const welcomeStyle = {
+    color: "white",
+    textShadow: "2px 2px black",
+  };
+
   return (
-    <div className="welcome" >
-</div>
-  )
-}
+    <div className="welcome">
+      <h1 style={welcomeStyle}>Welcome to the Playroom</h1>
+    </div>
+  );
+};
 
 
 export default Home;
