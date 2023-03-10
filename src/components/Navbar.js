@@ -2,27 +2,28 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 
 const Navbar = () => {
     const { parent, child } = useContext(LoadingContext);
-
-    const handleLogout = async () => {
-      try {
-        // perform logout logic, e.g. send a request to the server
-        await fetch("/logout", {
-          method: "POST",
-          credentials: "include",
-        });
+    const { logout } = useContext(AuthContext)
+    // const handleLogout = async () => {
+    //   try {
+    //     // perform logout logic, e.g. send a request to the server
+    //     await fetch("/logout", {
+    //       method: "POST",
+    //       credentials: "include",
+    //     });
   
-        // clear local session data
-        sessionStorage.clear();
+    //     // clear local session data
+    //     sessionStorage.clear();
   
-        // reload the current page, which will trigger a redirect to the login page
-        window.location.reload();
-      } catch (error) {
-        console.error("Error logging out: ", error);
-      }
-    };
+    //     // reload the current page, which will trigger a redirect to the login page
+    //     window.location.reload();
+    //   } catch (error) {
+    //     console.error("Error logging out: ", error);
+    //   }
+    // };
 
     const handleClick = () => {
         if (child) {
@@ -41,7 +42,7 @@ const Navbar = () => {
           <Link to={`/profile/${parent._id}`}>Profile</Link>
           <Link to={"/storytime"}>Story Time</Link>
           <Link to={"/nurseryrhymes"}>Nursery Rhymes</Link>
-          <Link to="/" onClick={handleLogout}>Log Out</Link>
+          <Link to="/" onClick={()=>logout()}>Log Out</Link>
 
         </nav>
       ) : (
