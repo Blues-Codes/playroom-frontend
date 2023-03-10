@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function ParentProfile() {
   const [parentProfile, setParentProfile] = useState({
@@ -31,22 +32,36 @@ function ParentProfile() {
     }));
   };
 
-  const handleAddChild = (event) => {
-    event.preventDefault();
-    setParentProfile((prevProfile) => ({
-      ...prevProfile,
-      children: [...prevProfile.children, newChild],
-    }));
-    setNewChild({
-      name: "",
-      age: "",
-      relation: "",
-    });
-  };
-
+  // const handleAddChild = (event) => {
+  //   event.preventDefault();
+  //   axios
+  //     .post(`/parent/${parentProfile._id}/child`, newChild)
+  //     .then((response) => {
+  //       setParentProfile((prevProfile) => ({
+  //         ...prevProfile,
+  //         children: [...prevProfile.children, response.data],
+  //       }));
+  //       setNewChild({
+  //         name: "",
+  //         age: "",
+  //         relation: "",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  
   const handleUpdateProfile = (event) => {
     event.preventDefault();
-    // code to update parent profile goes here
+    axios
+      .put(`/parent/${parentProfile._id}`, parentProfile)
+      .then((response) => {
+        setParentProfile(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -55,7 +70,7 @@ function ParentProfile() {
       <form onSubmit={(event) => {
         event.preventDefault();
         handleUpdateProfile();
-        handleAddChild();
+        // handleAddChild();
 }}>
         <label>Name</label>
         <input
@@ -85,7 +100,7 @@ function ParentProfile() {
           value={parentProfile.city}
           onChange={handleChange}
         ></input>
-        <h3>Children</h3>
+        {/* <h3>Children</h3> */}
         {parentProfile.children.map((child, index) => (
           <div key={index}>
             <label>Name</label>
@@ -96,7 +111,7 @@ function ParentProfile() {
             <input type="text" value={child.relation} disabled></input>
           </div>
           ))}
-        <h4>Add Child</h4>
+        {/* <h4>Add Child</h4>
         <label>Name</label>
         <input
           type="text"
@@ -110,8 +125,8 @@ function ParentProfile() {
           name="age"
           value={newChild.age}
           onChange={handleChildChange}
-        ></input>
-        <label>Relation</label>
+        ></input> */}
+        {/* <label>Relation</label>
         <select
           name="relation"
           value={newChild.relation}
@@ -124,11 +139,12 @@ function ParentProfile() {
           <option type="Aunt">Aunt</option>
           <option type="Uncle">Uncle</option>
           <option type="Sibling">Sibling</option>
-        </select>
-        <button type="submit">Update Profile / Add Child</button>
+        </select> */}
+        <button type="submit">Update Profile</button>
       </form>
     </div>
-  );
-}
+  )}
+  {/* );
+} */}
 
 export default ParentProfile;
