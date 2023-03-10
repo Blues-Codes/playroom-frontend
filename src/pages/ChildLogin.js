@@ -57,7 +57,6 @@ const ChildLogin = () => {
   const welcomeMsgStyle = {
     color: "white",
     textShadow: "2px 2px black",
-    border: "2px solid black",
     padding: "10px",
     textAlign: "center",
   };
