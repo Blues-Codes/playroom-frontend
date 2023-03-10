@@ -52,8 +52,7 @@ function ParentProfile() {
   //     });
   // };
   
-  const handleUpdateProfile = (event) => {
-    event.preventDefault();
+  const handleUpdateProfile = () => {
     axios
       .put(`/parent/${parentProfile._id}`, parentProfile)
       .then((response) => {
