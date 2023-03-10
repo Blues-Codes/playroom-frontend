@@ -44,10 +44,10 @@ const App = () => {
         <Route path="/childlogin" element={<ChildLogin />} />
 
         <Route element={<LoggedIn />}>
-          <Route path="/updates/:id" element={<Updates />} />
+          {/* <Route path="/updates/:id" element={<Updates />} /> */}
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/childlogin" element={<ChildLogin />} />
+          {/* <Route path="/childlogin" element={<ChildLogin />} /> */}
           {/* <Route path="/Comingsoon" element={<ComingSoon />} /> */}
           <Route path="/preloaded-games" element={<PreLoadedGames />} />
           {/* <Route path="/created-games" element={<CreatedGames />} /> */}

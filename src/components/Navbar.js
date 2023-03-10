@@ -39,8 +39,6 @@ const Navbar = () => {
           <Link to={"/PreLoaded-games"}>PreLoaded Games</Link>
           {/* <Link to={"/created-games"}>Created Games</Link> */}
           <Link to={`/profile/${parent._id}`}>Profile</Link>
-          <Link to={"/updates"}>Updates</Link>
-          <Link to={"/childprofile"}>Child Profile</Link>
           <Link to={"/storytime"}>Story Time</Link>
           <Link to={"/nurseryrhymes"}>Nursery Rhymes</Link>
           <Link to="/" onClick={handleLogout}>Log Out</Link>
