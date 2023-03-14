@@ -4,7 +4,7 @@ import { LoadingContext } from "../context/loading.context";
 
 const StoryTime = () => {
     return (
-      <div>
+      <div className="storytime">
         <h1>Pick a story to watch</h1>
         <div>
           <h2>"The Very Hungry Caterpillar"</h2>

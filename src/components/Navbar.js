@@ -37,7 +37,7 @@ const Navbar = () => {
       {parent ? (
         <nav className="navigation">
           {/* <Link to={"/about"}>About</Link> */}
-          <Link to={"/PreLoaded-games"}>PreLoaded Games</Link>
+          {/* <Link to={"/PreLoaded-games"}>PreLoaded Games</Link> */}
           {/* <Link to={"/created-games"}>Created Games</Link> */}
           <Link to={`/profile/${parent._id}`}>Profile</Link>
           <Link to={"/storytime"}>Story Time</Link>

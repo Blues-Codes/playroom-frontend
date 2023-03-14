@@ -46,7 +46,7 @@ const Profile = () => {
         )}
       </div>
       {parent && (
-        <div>
+        <div className="displayprofile">
           <h3>Welcome {parent.name}</h3>
           <h3>Your Email: {parent.email}</h3>
           <h3>Your City: {parent.city}</h3>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const NurseryRhymes = () => {
   return (
-    <div>
+    <div className='Nurseryrhymes'>
       <h1>Listen to your favorite Nursery Rhymes</h1>
       <div>
         <h2>"ITSY BITSY SPIDER"</h2>

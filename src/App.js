@@ -49,15 +49,15 @@ const App = () => {
           <Route path="/profile/:id" element={<Profile />} />
           {/* <Route path="/childlogin" element={<ChildLogin />} /> */}
           {/* <Route path="/Comingsoon" element={<ComingSoon />} /> */}
-          <Route path="/preloaded-games" element={<PreLoadedGames />} />
+          {/* <Route path="/preloaded-games" element={<PreLoadedGames />} /> */}
           {/* <Route path="/created-games" element={<CreatedGames />} /> */}
           {/* <Route path="/Resources" element={<Resources />} /> */}
           <Route path="/StoryTime" element={<Storytime />} />
           <Route path="/nurseryrhymes" element={<NurseryRhymes />} />
-          {/* <Route path="/tracing" element={<TraceGame />} /> */}
-          {/* <Route path="/shapes" element={<Shapes />} /> */}
-          {/* <Route path="/painting" element={<PaintingGame />} /> */}
-          {/* <Route path="/weather" element={<Weather />} /> */}
+          <Route path="/tracing" element={<TraceGame />} />
+          <Route path="/shapes" element={<Shapes />} />
+          <Route path="/painting" element={<PaintingGame />} />
+          <Route path="/weather" element={<Weather />} />
         </Route>
 
         <Route element={<NotLoggedIn />}>
