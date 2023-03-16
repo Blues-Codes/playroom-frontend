@@ -1,6 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const tracings = [  {    type: 'letter',    value: 'A',    image: 'apple.png',    path: 'M 50 100 Q 100 50 150 100 Q 100 150 50 100',  },  {    type: 'number',    value: '1',    image: 'one.png',    path: 'M 50 100 L 150 100',  },  {    type: 'shape',    value: 'square',    image: 'square.png',    path: 'M 50 50 L 150 50 L 150 150 L 50 150 Z',  },  // add tracing objects here
+const letters = [  {
+  A: [[100, 100], [200, 100], [200, 200], [150, 250], [100, 200], [100, 100], [200, 200]],
+  B: [[100, 100], [200, 100], [200, 175], [100, 175], [200, 175], [200, 250], [100, 250], [100, 175]],
+  C: [[200, 100], [100, 100], [100, 250], [200, 250]],
+  D: [[100, 100], [200, 100], [200, 250], [100, 250], [100, 100]],
+  E: [[200, 100], [100, 100], [100, 175], [150, 175], [100, 175], [100, 250], [200, 250]],
+  F: [[200, 100], [100, 100], [100, 175], [150, 175], [100, 175]],
+  G: [[200, 100], [100, 100], [100, 250], [200, 250], [200, 175], [150, 175]],
+  H: [[100, 100], [100, 250], [100, 175], [200, 175], [200, 250], [200, 100]],
+  I: [[150, 100], [150, 250]],
+  J: [[200, 100], [200, 250], [100, 250], [100, 200]],
+  K: [[100, 100], [100, 250], [200, 175], [100, 100], [200, 250]],
+  L: [[100, 100], [100, 250], [200, 250]],
+  M: [[100, 250], [100, 100], [150, 175], [200, 100], [200, 250]],
+  N: [[100, 250], [100, 100], [200, 250], [200, 100]],
+  O: [[100, 100], [200, 100], [200, 250], [100, 250], [100, 100]],
+  P: [[100, 100], [100, 250], [200, 250], [200, 175], [100, 175]],
+  Q: [[100, 100], [200, 100], [200, 250], [100, 250], [100, 100], [150, 175], [200, 250]],
+  R: [[100, 100], [100, 250], [200, 250], [200, 175], [100, 175], [200, 100]],
+  S: [[200, 100], [100, 100], [100, 175], [200, 175], [200, 250], [100, 250]],
+  T: [[100, 100], [200, 100], [150, 100], [150, 250]],
+  U: [[100, 100], [100, 250], [200, 250], [200, 100]],
+  V: [[100, 100], [150, 250], [200, 100]],
+  W: [[100, 100], [100, 250], [150, 175], [200, 250], [200, 100]],
+  X: [[100, 100], [200, 250], [200, 100], [100, 250]],
+  Y: [[100, 100], [150, 175], [150, 250], [150, 175], [200, 100]],
+  Z: [[100, 100], [200, 100], [100, 250], [200, 250]],
+
+}
+
+
+
+
+
+
+
+
+// {    type: 'number',    value: '1',    image: 'one.png',    path: 'M 50 100 L 150 100',  },  {    type: 'shape',    value: 'square',    image: 'square.png',    path: 'M 50 50 L 150 50 L 150 150 L 50 150 Z',  },  // add tracing objects here
 ];
 
 const TraceGame = () => {
@@ -68,6 +105,20 @@ const TraceGame = () => {
       setMessage('Try again!');
     }
   };
+  
+  useEffect(() => {
+    if (message === 'Great job!' && tracing) {
+      setTimeout(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        img.src = tracing.image;
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+      }, 3000);
+    }
+  }, [message, tracing]);
 
   const handleSelect = (event) => {
     const selected = event.target.value;
@@ -84,51 +135,16 @@ const TraceGame = () => {
       } else {
         const randomFilteredIndex = Math.floor(
           Math.random * filteredTracings.length
-          );
-          const randomFilteredTracing = filteredTracings[randomFilteredIndex];
-          setTracing(randomFilteredTracing);
-        }
+        );
+        const randomFilteredTracing = filteredTracings[randomFilteredIndex];
+        setTracing(randomFilteredTracing);
       }
-      setMessage('');
+    }
+    setMessage('');
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      ctx.stroke();
-    };
-  
-    return (
-      <div>
-        <h1>Trace Game</h1>
-        <div>
-          <label htmlFor="type-select">Choose a tracing type:</label>
-          <select id="type-select" onChange={handleSelect}>
-            <option value="any">Any</option>
-            <option value="letter">Letters</option>
-            <option value="number">Numbers</option>
-            <option value="shape">Shapes</option>
-          </select>
-        </div>
-        {tracing && (
-          <div>
-            <h2>Trace the {tracing.type} {tracing.value}</h2>
-            <img src={tracing.image} alt={`${tracing.value}`} />
-          </div>
-        )}
-        <canvas
-          ref={canvasRef}
-          width={200}
-          height={200}
-          onTouchStart={handleStart}
-          onTouchMove={handleMove}
-          onTouchEnd={handleEnd}
-          onMouseDown={handleStart}
-          onMouseMove={handleMove}
-          onMouseUp={handleEnd}
-        />
-        <p>{message}</p>
-      </div>
-    );
-  };
-  
-  export default TraceGame;
+  }
+}
+      
+      export default TraceGame;
