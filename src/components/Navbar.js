@@ -20,6 +20,7 @@ const Navbar = () => {
         <nav className="navigation">
           <Link to={`/profile/${parent._id}`}>Profile</Link>
           <Link to="/" onClick={()=>logout()}>Log Out</Link>
+          <Link to={"/childlogin"}>Child Login </Link>
 
         </nav>
       ) : (
