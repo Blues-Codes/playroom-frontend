@@ -56,7 +56,7 @@ const Profile = () => {
           {parent.updates.length ? 
             parent.updates.map((update) => {
               return (
-                <div>
+                <div classname="childrenupdate">
                   update
                   {console.log("this update", update)}
                   <p>{update.child.name}</p>

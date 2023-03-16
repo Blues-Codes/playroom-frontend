@@ -19,7 +19,7 @@ import Storytime from "./pages/Storytime";
 // import Shapes from "./Games/Shapes";
 // import TraceGame from "./Games/Tracing";
 // import Weather from "./Games/Weather";
-import NurseryRhymes from "./Games/NurseryRhymes";
+import NurseryRhymes from "./pages/NurseryRhymes";
 
 const App = () => {
   const getToken = () => {

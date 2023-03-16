@@ -1,9 +1,29 @@
+/* NAVBAR  */
+
 .navigation {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: black; /* sets background to black */
+  color: white; /* sets font color to white */
+  font-family: 'Chalkduster', sans-serif; /* sets font to chalk writing style */
+  padding: 10px 20px; /* adds padding to the navbar */
 }
 
+.navigation a {
+  color: white; /* sets link color to white */
+  text-decoration: none; /* removes underline from links */
+  font-size: 20px; /* sets font size for links */
+  padding: 5px 10px; /* adds padding to links */
+  border-radius: 5px; /* adds rounded corners to links */
+}
+
+.navigation a:hover {
+  background-color: white; /* sets link background to white on hover */
+  color: black; /* sets link color to black on hover */
+}
+
+/* All form css */
 form {
   display: flex;
   flex-direction: column;
@@ -27,6 +47,7 @@ form {
   background-image: url("./images/Playroombackground.jpg");
   background-size: 98%;
   height: 110vh;
+  background-repeat: repeat;
 }
 
 /* CHILD LOG IN */
@@ -143,6 +164,16 @@ flex-direction: column;
   border: 1px solid black; /* set thin black border */
   padding: 20px; /* add some padding for better appearance */
 
+}
+
+.childrenupdate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  background-color: white; /* set background color to white */
+  border: 1px solid black; /* set thin black border */
+  padding: 20px; /* add some padding for better appearance */
 }
 /* .frame iframe{
 
