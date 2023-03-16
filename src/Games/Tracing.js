@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const letters = [  {
+const tracing = [  {
   A: [[100, 100], [200, 100], [200, 200], [150, 250], [100, 200], [100, 100], [200, 200]],
   B: [[100, 100], [200, 100], [200, 175], [100, 175], [200, 175], [200, 250], [100, 250], [100, 175]],
   C: [[200, 100], [100, 100], [100, 250], [200, 250]],
@@ -115,21 +115,21 @@ const TraceGame = () => {
 
   const handleSelect = (event) => {
     const selected = event.target.value;
-    const randomIndex = Math.floor(Math.random() * tracings.length);
-    const randomTracing = tracings[randomIndex];
+    const randomIndex = Math.floor(Math.random() * tracing.length);
+    const randomTracing = tracing[randomIndex];
     if (selected === 'any') {
       setTracing(randomTracing);
     } else {
-      const filteredTracings = tracings.filter(
+      const filteredtracing = tracing.filter(
         (tracing) => tracing.type === selected
       );
-      if (filteredTracings.length === 0) {
+      if (filteredTracing.length === 0) {
         setTracing(randomTracing);
       } else {
         const randomFilteredIndex = Math.floor(
-          Math.random * filteredTracings.length
+          Math.random * filteredTracing.length
         );
-        const randomFilteredTracing = filteredTracings[randomFilteredIndex];
+        const randomFilteredTracing = filteredTracing[randomFilteredIndex];
         setTracing(randomFilteredTracing);
       }
     }
