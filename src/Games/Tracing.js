@@ -33,9 +33,11 @@ const tracing = [  {
 
 const TraceGame = () => {
   const canvasRef = useRef(null);
-  const [tracing, setTracing] = useState(null);
+  const [initialTracing, setInitialTracing] = useState([]); //change tracing to initialTracing
+  const [filteredTracing, setFilteredTracing] = useState(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [message, setMessage] = useState('');
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -100,45 +102,44 @@ const TraceGame = () => {
   };
   
   useEffect(() => {
-    if (message === 'Great job!' && tracing) {
+    if (message === 'Great job!' && initialTracing) {
       setTimeout(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const img = new Image();
-        img.src = tracing.image;
+        img.src = initialTracing.image;
         img.onload = () => {
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         };
       }, 3000);
     }
-  }, [message, tracing]);
+  }, [message, initialTracing]);
 
   const handleSelect = (event) => {
     const selected = event.target.value;
-    const randomIndex = Math.floor(Math.random() * tracing.length);
-    const randomTracing = tracing[randomIndex];
+    const randomIndex = Math.floor(Math.random() * initialTracing.length);
+    const randomInitialTracing = initialTracing[randomIndex];
     if (selected === 'any') {
-      setTracing(randomTracing);
+      setInitialTracing(randomInitialTracing);
     } else {
-      const filteredtracing = tracing.filter(
+      const filteredTracing = initialTracing.filter(
         (tracing) => tracing.type === selected
       );
       if (filteredTracing.length === 0) {
-        setTracing(randomTracing);
+        setInitialTracing(randomInitialTracing);
       } else {
         const randomFilteredIndex = Math.floor(
           Math.random * filteredTracing.length
         );
         const randomFilteredTracing = filteredTracing[randomFilteredIndex];
-        setTracing(randomFilteredTracing);
+        setInitialTracing(randomFilteredTracing);
       }
     }
     setMessage('');
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-
 return (
   <div>
     <canvas ref={canvasRef} width={600} height={400} 
