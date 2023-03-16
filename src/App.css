@@ -180,6 +180,10 @@ flex-direction: column;
   .tracingcanvas {
     width: 500px;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
   }
 
 
