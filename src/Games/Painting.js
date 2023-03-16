@@ -52,7 +52,7 @@ function PaintingGame() {
           onChange={handleColorChange}
         />
       </div>
-      <div className="canvas">
+      <div className="paintingcanvas">
         {[...Array(4000)].map((_, i) => (
           <div
             key={i}

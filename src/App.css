@@ -84,7 +84,7 @@ form {
   margin-bottom: 20px;
 }
 
-.canvas {
+.paintingcanvas {
   display: grid;
   grid-template-columns: repeat(100, 1fr);
   grid-template-rows: repeat(40, 1fr);
@@ -160,7 +160,7 @@ flex-direction: column;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25vw;
+  width: 20vw;
   background-color: white; /* set background color to white */
   border: 1px solid black; /* set thin black border */
   padding: 20px; /* add some padding for better appearance */
@@ -171,18 +171,15 @@ flex-direction: column;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25vw;
+  width: 20vw;
   background-color: white; /* set background color to white */
   border: 1px solid black; /* set thin black border */
   padding: 20px; /* add some padding for better appearance */
 }
-/* .frame iframe{
 
-  pointer-events: none;
+  .tracingcanvas {
+    width: 500px;
+    height: 500px;
+  }
 
-} */
-
-/* .clickable {
-  background-image: url("./images/playroomlinked.png");
-} */
 

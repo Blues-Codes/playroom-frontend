@@ -29,15 +29,6 @@ const letters = [  {
   Z: [[100, 100], [200, 100], [100, 250], [200, 250]],
 
 }
-
-
-
-
-
-
-
-
-// {    type: 'number',    value: '1',    image: 'one.png',    path: 'M 50 100 L 150 100',  },  {    type: 'shape',    value: 'square',    image: 'square.png',    path: 'M 50 50 L 150 50 L 150 150 L 50 150 Z',  },  // add tracing objects here
 ];
 
 const TraceGame = () => {
@@ -48,6 +39,8 @@ const TraceGame = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    canvas.width = 600;
+    canvas.height = 400;
     const ctx = canvas.getContext('2d');
     ctx.lineWidth = 5;
     ctx.lineCap = 'round';
@@ -146,5 +139,33 @@ const TraceGame = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 }
+return (
+  <div>
+    <canvas ref={canvasRef} width={600} height={400} 
+      onTouchStart={handleStart} onMouseDown={handleStart}
+      onTouchMove={handleMove} onMouseMove={handleMove}
+      onTouchEnd={handleEnd} onMouseUp={handleEnd}
+    />
+    <div>
+      <select onChange={handleSelect}>
+        <option value="any">Any</option>
+        <option value="uppercase">Uppercase</option>
+        <option value="lowercase">Lowercase</option>
+        <option value="numbers">Numbers</option>
+      </select>
+    </div>
+    <div>{message}</div>
+  </div>
+);
+
       
       export default TraceGame;
+
+
+
+
+
+
+
+// {    type: 'number',    value: '1',    image: 'one.png',    path: 'M 50 100 L 150 100',  },  {    type: 'shape',    value: 'square',    image: 'square.png',    path: 'M 50 50 L 150 50 L 150 150 L 50 150 Z',  },  // add tracing objects here
+
