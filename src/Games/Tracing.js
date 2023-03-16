@@ -138,7 +138,7 @@ const TraceGame = () => {
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-}
+
 return (
   <div>
     <canvas ref={canvasRef} width={600} height={400} 
@@ -157,7 +157,7 @@ return (
     <div>{message}</div>
   </div>
 );
-
+}
       
       export default TraceGame;
 
