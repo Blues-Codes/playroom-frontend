@@ -15,10 +15,10 @@ import PreLoadedGames from "./pages/PreLoadedGames";
 import EditProfile from "./pages/EditProfile";
 // import CreatedGames from "./pages/CreatedGames";
 import Storytime from "./pages/Storytime";
-// import PaintingGame from "./Games/Painting";
-// import Shapes from "./Games/Shapes";
-// import TraceGame from "./Games/Tracing";
-// import Weather from "./Games/Weather";
+import PaintingGame from "./Games/Painting";
+import Shapes from "./Games/Shapes";
+import TraceGame from "./Games/Tracing";
+import Weather from "./Games/Weather";
 import NurseryRhymes from "./pages/NurseryRhymes";
 
 const App = () => {
@@ -47,7 +47,7 @@ const App = () => {
           {/* <Route path="/updates/:id" element={<Updates />} /> */}
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/profile/:id" element={<Profile />} />
-          {/* <Route path="/childlogin" element={<ChildLogin />} /> */}
+          <Route path="/childlogin" element={<ChildLogin />} />
           {/* <Route path="/Comingsoon" element={<ComingSoon />} /> */}
           {/* <Route path="/preloaded-games" element={<PreLoadedGames />} /> */}
           {/* <Route path="/created-games" element={<CreatedGames />} /> */}
